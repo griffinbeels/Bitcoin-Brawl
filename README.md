@@ -16,7 +16,7 @@ About Griffin Beels:
 Computer Science concentrator at Brown University, who aims to become either a game developer or an artificial intelligence researcher.
 
 About Bill Shields:
-Computer Science major at University of North Carolina: Chapel Hill.
+Computer Science major at University of North Carolina at Chapel Hill, who intends on developing games and software.
 
 Starting date: 1/5/2018
 

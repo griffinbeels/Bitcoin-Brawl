@@ -13,12 +13,17 @@ class GameScene: SKScene {
     
     private var label : SKLabelNode?
     private var spinnyNode : SKShapeNode?
+    private var taps:Int = 0 {
+        didSet {
+            label?.text = "Bitcoin \(taps)"
+        }
+    }
     
     override func didMove(to view: SKView) {
         
         // Get label node from scene and store it for use later
         self.label = self.childNode(withName: "//helloLabel") as? SKLabelNode
-        label?.text = "Bitcoin Brawl"
+        label?.text = "Bitcoin \(taps)"
 
         if let label = self.label {
             label.alpha = 0.0
@@ -45,6 +50,7 @@ class GameScene: SKScene {
             n.position = pos
             n.strokeColor = SKColor.green
             self.addChild(n)
+            taps = taps + 1
         }
     }
     

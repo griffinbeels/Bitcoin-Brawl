@@ -19,6 +19,9 @@ class GameScene: SKScene {
         // Get label node from scene and store it for use later
         self.label = self.childNode(withName: "//helloLabel") as? SKLabelNode
         label?.text = "Bitcoin Brawl"
+        label?.text = "Bitcoin Brawls"
+        label?.text = "Bitcoin geese"
+
         if let label = self.label {
             label.alpha = 0.0
             label.run(SKAction.fadeIn(withDuration: 2.0))

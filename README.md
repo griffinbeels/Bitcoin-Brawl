@@ -9,7 +9,7 @@ The Bitcoin World Arena!  Here, you'll face off against other Bitcoin enthusiast
 for monetary glory.
 
 --------------------------------------------------
-# Primary contributers:
+Primary contributers:
 Griffin Beels, Bill Shields.
 
 About Griffin Beels:

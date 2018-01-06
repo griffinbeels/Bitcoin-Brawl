@@ -8,5 +8,16 @@ How will you gain Bitcoin (and other currencies) you might ask?
 The Bitcoin World Arena!  Here, you'll face off against other Bitcoin enthusiasts and compete 
 for monetary glory.
 
-Primary contributers: Griffin Beels, Bill Shields.
+--------------------------------------------------
+Primary contributers:
+Griffin Beels, Bill Shields.
+
+About Griffin Beels:
+Computer Science concentrator at Brown University, who aims to become either a game developer or an artificial intelligence researcher.
+
+About Bill Shields:
+Computer Science major at University of North Carolina at Chapel Hill, who intends on developing games and software.
+
 Starting date: 1/5/2018
+
+Note: None of the development team had prior experience with Swift going into this project; for this reason, a lot of the changes to this project will be particularly simple.  We're learning as we're committing.  Griffin is particularly experienced in Java.

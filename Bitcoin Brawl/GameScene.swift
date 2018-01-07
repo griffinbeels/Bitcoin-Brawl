@@ -3,7 +3,7 @@
 //  Bitcoin Brawl
 //
 //  Created by Griffin  Beels on 1/5/18.
-//  Copyright © 2018 Griffin  Beels. All rights reserved.
+//  Copyright © 2018 Omega Bunny. All rights reserved.
 //
 
 import SpriteKit

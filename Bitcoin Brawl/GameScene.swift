@@ -12,17 +12,29 @@ import GameplayKit
 class GameScene: SKScene {
     
     private var label : SKLabelNode?
+    private var reset : SKLabelNode?
     private var spinnyNode : SKShapeNode?
-    private var taps:Int = 0 {
+    private var taps : Int = 0 {
         didSet {
             label?.text = "Bitcoin \(taps)"
         }
     }
+    private var tapScale : Int = 1 {
+        didSet{
+            currentScale = "Coins per Tap: \(tapScale)\nCost: \(tapScale * 50)"
+            self.testButton.setTitle(currentScale, for: .normal)
+        }
+    }
+    private var currentScale = ""
+    
+   private let testButton = UIButton(frame: CGRect(x: 75, y: 100, width: 200, height: 100))
     
     override func didMove(to view: SKView) {
-        
-        if UserDefaults.standard.object(forKey: "tapsCounter")as! Int != 0{
+        if UserDefaults.standard.object(forKey: "tapsCounter")as? Int != nil{
             taps = UserDefaults.standard.object(forKey: "tapsCounter") as! Int
+        }
+        if UserDefaults.standard.object(forKey: "tapScale")as? Int != nil{
+            tapScale = UserDefaults.standard.object(forKey: "tapScale") as! Int
         }
         
         // Get label node from scene and store it for use later
@@ -34,27 +46,49 @@ class GameScene: SKScene {
             label.run(SKAction.fadeIn(withDuration: 2.0))
         }
         
+        currentScale = "Coins per Tap: \(tapScale)\nCost: \(tapScale * 50)"
+        
         // Create shape node to use during mouse interaction
         let w = (self.size.width + self.size.height) * 0.05
         self.spinnyNode = SKShapeNode.init(rectOf: CGSize.init(width: w, height: w), cornerRadius: w * 0.3)
         
         if let spinnyNode = self.spinnyNode {
             spinnyNode.lineWidth = 2.5
-            
             spinnyNode.run(SKAction.repeatForever(SKAction.rotate(byAngle: CGFloat(Double.pi), duration: 1)))
             spinnyNode.run(SKAction.sequence([SKAction.wait(forDuration: 0.5),
                                               SKAction.fadeOut(withDuration: 0.5),
                                               SKAction.removeFromParent()]))
         }
+        createButton();
     }
     
+    func createButton()
+    {
+        // Put it in the center of the scene
+        self.testButton.backgroundColor = .red
+        self.testButton.setTitle(currentScale, for: .normal)
+        self.testButton.addTarget(self, action: #selector(upgradeAction), for: .touchUpInside)
+        testButton.titleLabel?.lineBreakMode = .byWordWrapping
+        // you probably want to center it
+        testButton.titleLabel?.textAlignment = .center
+        self.view?.addSubview(testButton)
+    }
+    
+    @objc func upgradeAction(sender: UIButton!){
+        if taps >= tapScale*50 {
+            taps -= tapScale*50
+            tapScale += 1
+            UserDefaults.standard.set(taps, forKey: "tapsCounter")
+            UserDefaults.standard.set(tapScale, forKey: "tapScale")
+        }
+    }
     
     func touchDown(atPoint pos : CGPoint) {
         if let n = self.spinnyNode?.copy() as! SKShapeNode? {
             n.position = pos
             n.strokeColor = SKColor.green
             self.addChild(n)
-            taps = taps + 1
+            taps += tapScale
             UserDefaults.standard.set(taps, forKey: "tapsCounter")
 	        }
     }

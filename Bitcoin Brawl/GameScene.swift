@@ -21,6 +21,10 @@ class GameScene: SKScene {
     
     override func didMove(to view: SKView) {
         
+        if UserDefaults.standard.object(forKey: "tapsCounter")as! Int != 0{
+            taps = UserDefaults.standard.object(forKey: "tapsCounter") as! Int
+        }
+        
         // Get label node from scene and store it for use later
         self.label = self.childNode(withName: "//helloLabel") as? SKLabelNode
         label?.text = "Bitcoin \(taps)"
@@ -51,7 +55,8 @@ class GameScene: SKScene {
             n.strokeColor = SKColor.green
             self.addChild(n)
             taps = taps + 1
-        }
+            UserDefaults.standard.set(taps, forKey: "tapsCounter")
+	        }
     }
     
     func touchMoved(toPoint pos : CGPoint) {
